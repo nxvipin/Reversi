@@ -170,14 +170,14 @@ play_move({{move, Move}, Flips}, Color, Board) ->
 is_valid({X, Y}, Color, Board) ->
 	Valid_Moves = find_valid_moves_for(Color, Board),
 	F = fun(_Fun, {_X,_Y}, []) ->
-			false;
-	   (Fun, {X1,Y1}, [H|T]) ->
-			case H of
-				{{move,{X1,Y1}}, _} ->
-					H;
-				_ ->
-					Fun(Fun, {X1,Y1}, T)
-			end
+				false;
+		   (Fun, {X1,Y1}, [H|T]) ->
+				case H of
+					{{move,{X1,Y1}}, _} ->
+						H;
+					_ ->
+						Fun(Fun, {X1,Y1}, T)
+				end
 		end,
 	F(F, {X,Y}, Valid_Moves).
 
@@ -200,4 +200,4 @@ display_board(Board) ->
 
 
 really_dumb_ai_play(Color, Board) ->
-   play_move(lists:nth(1,find_valid_moves_for(Color,Board)), Color, Board).
+	play_move(lists:nth(1,find_valid_moves_for(Color,Board)), Color, Board).
